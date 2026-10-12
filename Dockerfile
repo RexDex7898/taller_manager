@@ -1,7 +1,8 @@
 FROM php:8.3-cli-alpine
 
-# Instalar extensiones de PHP necesarias para Laravel y TiDB Cloud
+# Instalar certificados SSL (ca-certificates) y extensiones de PHP necesarias
 RUN apk add --no-cache \
+    ca-certificates \
     libpng-dev \
     libzip-dev \
     zip \
