@@ -23,9 +23,14 @@
             <div>
                 <label style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px;">Categoría *</label>
                 <select name="categoria" required style="width: 100%; padding: 10px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 14px; background: white;">
-                    @foreach(['Fundas', 'Cristales Templados', 'Pantallas', 'Baterías', 'Cargadores', 'Audífonos', 'Refacciones', 'Otros'] as $cat)
-                        <option value="{{ $cat }}" {{ old('categoria', $producto->categoria) == $cat ? 'selected' : '' }}>{{ $cat }}</option>
-                    @endforeach
+                    <option value="Fundas" {{ old('categoria', $producto->categoria) == 'Fundas' ? 'selected' : '' }}>Fundas / Cases</option>
+                    <option value="Cristales Templados" {{ old('categoria', $producto->categoria) == 'Cristales Templados' ? 'selected' : '' }}>Cristales Templados</option>
+                    <option value="Pantallas" {{ old('categoria', $producto->categoria) == 'Pantallas' ? 'selected' : '' }}>Pantallas / Displays</option>
+                    <option value="Baterías" {{ old('categoria', $producto->categoria) == 'Baterías' ? 'selected' : '' }}>Baterías</option>
+                    <option value="Cargadores" {{ old('categoria', $producto->categoria) == 'Cargadores' ? 'selected' : '' }}>Cargadores y Cables</option>
+                    <option value="Audífonos" {{ old('categoria', $producto->categoria) == 'Audífonos' ? 'selected' : '' }}>Audífonos</option>
+                    <option value="Refacciones" {{ old('categoria', $producto->categoria) == 'Refacciones' ? 'selected' : '' }}>Refacciones internas</option>
+                    <option value="Otros" {{ old('categoria', $producto->categoria) == 'Otros' ? 'selected' : '' }}>Otros</option>
                 </select>
             </div>
             <div>

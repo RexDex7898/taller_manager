@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="header" style="display: flex; justify-content: space-between; align-items: center;">
+<div class="header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
     <div>
         <h1>🛒 Terminal Punto de Venta</h1>
         <p>Selecciona productos o escanea código de barras</p>
@@ -24,7 +24,7 @@
             <label style="display: block; font-size: 12px; font-weight: bold; margin-bottom: 5px;">Selecciona del Inventario:</label>
             <select id="select-producto" style="width: 100%; padding: 10px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 14px; background: white;">
                 <option value="">-- Elige un producto --</option>
-                @foreach($productos as$prod)
+                @foreach($productos as $prod)
                     <option value="{{ $prod->id }}" data-nombre="{{ $prod->nombre }}" data-precio="{{ $prod->precio_venta }}" data-stock="{{ $prod->stock }}" data-codigo="{{ $prod->codigo }}">
                         {{ $prod->nombre }} -${{ number_format($prod->precio_venta, 2) }} (Stock: {{$prod->stock }})
                     </option>
@@ -117,7 +117,6 @@
         const stockMax = parseInt(option.getAttribute('data-stock'));
         const cantidad = parseInt(document.getElementById('input-cantidad').value) || 1;
 
-        // Verificar si ya existe en carrito
         const existe = carrito.find(item => item.id === productoId);
         if (existe) {
             if (existe.cantidad + cantidad > stockMax) {
