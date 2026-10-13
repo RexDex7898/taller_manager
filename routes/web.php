@@ -8,6 +8,7 @@ use App\Http\Controllers\ReparacionController;
 use App\Http\Controllers\CotizacionController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ReporteController;
+use App\Http\Controllers\VentaController;
 
 // Dashboard principal
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
@@ -35,3 +36,4 @@ Route::post('/equipos/{equipo}/ingresar', [ReparacionController::class, 'ingresa
 Route::patch('/reparaciones/{reparacion}/estado', [ReparacionController::class, 'actualizarEstado'])->name('reparaciones.estado');
 
 Route::get('reportes', [ReporteController::class, 'index'])->name('reportes.index');
+Route::resource('ventas', VentaController::class)->only(['index', 'create', 'store', 'show']);
