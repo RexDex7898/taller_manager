@@ -150,7 +150,7 @@
             <a href="{{ route('reparaciones.index') }}" class="{{ request()->routeIs('reparaciones.*') ? 'active' : '' }}" onclick="closeMenu()">🔧 Reparaciones</a>
             <a href="{{ route('clientes.index') }}" class="{{ request()->routeIs('clientes.*') ? 'active' : '' }}" onclick="closeMenu()">👥 Clientes</a>
             <a href="{{ route('equipos.index') }}" class="{{ request()->routeIs('equipos.*') ? 'active' : '' }}" onclick="closeMenu()">📱 Equipos</a>
-            <a href="#" onclick="closeMenu()">📦 Inventario</a>
+            <a href="{{ route('inventario.index') }}" class="{{ request()->routeIs('inventario.*') ? 'active' : '' }}" onclick="closeMenu()">📦 Inventario</a>
             <a href="#" onclick="closeMenu()">📈 Reportes</a>
         </nav>
     </aside>

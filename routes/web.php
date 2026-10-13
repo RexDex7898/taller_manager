@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\EquipoController;
@@ -25,3 +26,7 @@ Route::resource('cotizaciones', CotizacionController::class)
 // Rutas adicionales del taller
 Route::post('/equipos/{equipo}/ingresar', [ReparacionController::class, 'ingresarExistente'])->name('equipos.ingresar');
 Route::patch('/reparaciones/{reparacion}/estado', [ReparacionController::class, 'actualizarEstado'])->name('reparaciones.estado');
+
+
+Route::get('inventario/pdf', [ProductoController::class, 'pdf'])->name('inventario.pdf');
+Route::resource('inventario', ProductoController::class);
