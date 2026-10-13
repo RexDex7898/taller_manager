@@ -1,211 +1,46 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nuevo Cliente - Taller Manager</title>
+@extends('layouts.app')
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f4f6f8;
-            margin: 0;
-            padding: 30px;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: auto;
-        }
-
-        .header {
-            margin-bottom: 25px;
-        }
-
-        .card {
-            background: white;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        }
-
-        .form-group {
-            margin-bottom: 18px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 7px;
-            font-weight: bold;
-        }
-
-        input,
-        textarea {
-            width: 100%;
-            padding: 11px;
-            border: 1px solid #d1d5db;
-            border-radius: 6px;
-            box-sizing: border-box;
-            font-size: 15px;
-        }
-
-        textarea {
-            min-height: 90px;
-            resize: vertical;
-        }
-
-        .buttons {
-            display: flex;
-            gap: 10px;
-            margin-top: 25px;
-        }
-
-        .btn {
-            padding: 11px 18px;
-            border-radius: 6px;
-            text-decoration: none;
-            border: none;
-            cursor: pointer;
-            font-size: 15px;
-        }
-
-        .btn-primary {
-            background: #2563eb;
-            color: white;
-        }
-
-        .btn-secondary {
-            background: #e5e7eb;
-            color: #111827;
-        }
-
-        .error {
-            color: #dc2626;
-            font-size: 14px;
-            margin-top: 5px;
-        }
-    </style>
-</head>
-
-<body>
-
-<div class="container">
-
-    <div class="header">
-        <h1>➕ Nuevo cliente</h1>
-        <p>Registra los datos del cliente del taller.</p>
+@section('content')
+<div class="header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+    <div>
+        <h1>➕ Nuevo Cliente</h1>
+        <p>Registra un nuevo cliente en el sistema</p>
     </div>
-
-    <div class="card">
-
-        @if($errors->any())
-            <div>
-                <strong>Hay algunos errores:</strong>
-
-                <ul>
-                    @foreach($errors->all() as $error)
-                        <li class="error">{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-
-        <form action="{{ route('clientes.store') }}" method="POST">
-
-            @csrf
-
-            <div class="form-group">
-                <label for="nombre">Nombre *</label>
-
-                <input
-                    type="text"
-                    id="nombre"
-                    name="nombre"
-                    value="{{ old('nombre') }}"
-                    required
-                >
-            </div>
-
-            <div class="form-group">
-                <label for="apellidos">Apellidos</label>
-
-                <input
-                    type="text"
-                    id="apellidos"
-                    name="apellidos"
-                    value="{{ old('apellidos') }}"
-                >
-            </div>
-
-            <div class="form-group">
-                <label for="telefono">Teléfono *</label>
-
-                <input
-                    type="text"
-                    id="telefono"
-                    name="telefono"
-                    value="{{ old('telefono') }}"
-                    required
-                >
-            </div>
-
-            <div class="form-group">
-                <label for="whatsapp">WhatsApp</label>
-
-                <input
-                    type="text"
-                    id="whatsapp"
-                    name="whatsapp"
-                    value="{{ old('whatsapp') }}"
-                >
-            </div>
-
-            <div class="form-group">
-                <label for="email">Correo electrónico</label>
-
-                <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value="{{ old('email') }}"
-                >
-            </div>
-
-            <div class="form-group">
-                <label for="direccion">Dirección</label>
-
-                <textarea
-                    id="direccion"
-                    name="direccion"
-                >{{ old('direccion') }}</textarea>
-            </div>
-
-            <div class="form-group">
-                <label for="notas">Notas</label>
-
-                <textarea
-                    id="notas"
-                    name="notas"
-                >{{ old('notas') }}</textarea>
-            </div>
-
-            <div class="buttons">
-
-                <button type="submit" class="btn btn-primary">
-                    Guardar cliente
-                </button>
-
-                <a href="{{ route('clientes.index') }}" class="btn btn-secondary">
-                    Cancelar
-                </a>
-
-            </div>
-
-        </form>
-
-    </div>
-
+    <a href="{{ route('clientes.index') }}" class="btn" style="background: #4b5563;">← Volver</a>
 </div>
 
-</body>
-</html>
+<div class="card" style="max-width: 600px; padding: 24px;">
+    <form action="{{ route('clientes.store') }}" method="POST">
+        @csrf
+
+        <div style="margin-bottom: 15px;">
+            <label for="nombre" style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px;">Nombre Completo *</label>
+            <input type="text" name="nombre" id="nombre" value="{{ old('nombre') }}" required style="width: 100%; padding: 10px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 14px;">
+            @error('nombre') <span style="color: #dc2626; font-size: 12px; margin-top: 4px; display: block;">{{ $message }}</span> @enderror
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <label for="telefono" style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px;">Teléfono</label>
+            <input type="text" name="telefono" id="telefono" value="{{ old('telefono') }}" style="width: 100%; padding: 10px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 14px;">
+            @error('telefono') <span style="color: #dc2626; font-size: 12px; margin-top: 4px; display: block;">{{ $message }}</span> @enderror
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <label for="whatsapp" style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px;">WhatsApp</label>
+            <input type="text" name="whatsapp" id="whatsapp" value="{{ old('whatsapp') }}" style="width: 100%; padding: 10px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 14px;">
+            @error('whatsapp') <span style="color: #dc2626; font-size: 12px; margin-top: 4px; display: block;">{{ $message }}</span> @enderror
+        </div>
+
+        <div style="margin-bottom: 20px;">
+            <label for="email" style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px;">Correo Electrónico</label>
+            <input type="email" name="email" id="email" value="{{ old('email') }}" style="width: 100%; padding: 10px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 14px;">
+            @error('email') <span style="color: #dc2626; font-size: 12px; margin-top: 4px; display: block;">{{ $message }}</span> @enderror
+        </div>
+
+        <div style="display: flex; gap: 10px; align-items: center;">
+            <button type="submit" class="btn btn-success" style="padding: 10px 18px; font-size: 14px;">💾 Guardar Cliente</button>
+            <a href="{{ route('clientes.index') }}" class="btn" style="background: #9ca3af; padding: 10px 18px; font-size: 14px;">Cancelar</a>
+        </div>
+    </form>
+</div>
+@endsection
