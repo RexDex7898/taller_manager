@@ -30,3 +30,7 @@ Route::patch('/reparaciones/{reparacion}/estado', [ReparacionController::class, 
 
 Route::get('inventario/pdf', [ProductoController::class, 'pdf'])->name('inventario.pdf');
 Route::resource('inventario', ProductoController::class);
+
+Route::get('/', function () {
+    return redirect()->route('dashboard');
+});
