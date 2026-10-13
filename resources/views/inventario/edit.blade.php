@@ -39,15 +39,9 @@
             </div>
         </div>
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;">
-            <div>
-                <label style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px;">Precio de Compra ($)</label>
-                <input type="number" step="0.01" name="precio_compra" value="{{ old('precio_compra', $producto->precio_compra) }}" style="width: 100%; padding: 10px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 14px;">
-            </div>
-            <div>
-                <label style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px;">Precio de Venta ($) *</label>
-                <input type="number" step="0.01" name="precio_venta" value="{{ old('precio_venta', $producto->precio_venta) }}" required style="width: 100%; padding: 10px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 14px;">
-            </div>
+        <div style="margin-bottom: 15px;">
+            <label style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px;">Precio de Venta ($) *</label>
+            <input type="number" step="0.01" name="precio_venta" value="{{ old('precio_venta', $producto->precio_venta) }}" required style="width: 100%; padding: 10px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 14px;">
         </div>
 
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">
